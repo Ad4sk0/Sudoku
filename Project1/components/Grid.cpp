@@ -7,16 +7,28 @@ void Grid::draw_grid_lines()
 	for (int i = 0; i < gridSize + 1; i++)
 	{
 		float lineThickness = lineThicknessSmall;
+		auto color = lineThinColor;
 		if (i % smallGridSize == 0) {
 			lineThickness = lineThicknessBig;
+
+			if (i == 0 || i == gridSize)
+			{
+				color = outsideBorderColor;
+			}
+			else
+			{
+				color = lineThickColor;
+			}
 		}
 
 		sf::RectangleShape verticalLine(sf::Vector2f(lineThickness, gridHeight));
 		verticalLine.setPosition(x, marginY);
+		verticalLine.setFillColor(color);
 		window.draw(verticalLine);
 
 		sf::RectangleShape horizontalLine(sf::Vector2f(gridWidth, lineThickness));
 		horizontalLine.setPosition(marginX, y);
+		horizontalLine.setFillColor(color);
 		window.draw(horizontalLine);
 
 		x += cellSize + lineThickness;
@@ -37,10 +49,10 @@ std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells()
 		{
 			sf::RectangleShape rectangle(sf::Vector2f(cellSize, cellSize));
 			rectangle.setPosition(x, y);
-			rectangle.setFillColor(sf::Color::Red);
+			rectangle.setFillColor(cellColor);
 
 			if (currentlySelectedCell && currentlySelectedCell->first == row && currentlySelectedCell->second == col) {
-				rectangle.setFillColor(sf::Color::Yellow);
+				rectangle.setFillColor(cellSelectedColor);
 			}
 
 			window.draw(rectangle);
@@ -73,7 +85,8 @@ void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value)
 	text.setFont(font);
 	text.setString(std::to_string(value));
 	text.setCharacterSize(static_cast<int>(cellSize / 2.0f));
-	text.setFillColor(sf::Color::Black);
+	text.setFillColor(gridTextColor);
+	text.setStyle(sf::Text::Bold);
 	text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width / 2.0f, text.getLocalBounds().top + text.getLocalBounds().height / 2.0f);
 	text.setPosition(rectangle.getPosition().x + rectangle.getSize().x / 2.0f, rectangle.getPosition().y + rectangle.getSize().y / 2.0f);
 	window.draw(text);
@@ -103,9 +116,17 @@ void Grid::handleNewValueEntry(int value)
 	}
 }
 
-Grid::Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions, std::vector<std::vector<Cell>> initialGridCels)
+const sf::Color cellColor;
+const sf::Color cellSelectedColor;
+const sf::Color gridTextColor;
+const sf::Color outsideBorderColor;
+const sf::Color lineThinColor;
+const sf::Color lineThickColor;
+
+Grid::Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions, const GridStyle& gridStyle, std::vector<std::vector<Cell>> initialGridCels)
 	: window(window),
 	gridCells(initialGridCels),
+
 	gridSize(gridDimensions.getGridSize()),
 	smallGridSize(gridSize / 3),
 	cellSize(gridDimensions.getCellSize()),
@@ -114,7 +135,14 @@ Grid::Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions, std::
 	lineThicknessSmall(gridDimensions.getLineThicknessSmall()),
 	lineThicknessBig(gridDimensions.getLineThicknessBig()),
 	gridHeight(gridDimensions.getGridHeight()),
-	gridWidth(gridDimensions.getGridWidth())
+	gridWidth(gridDimensions.getGridWidth()),
+	cellColor(gridStyle.getCellColor()),
+	cellSelectedColor(gridStyle.getCellSelectedColor()),
+	gridTextColor(gridStyle.getGridTextColor()),
+	outsideBorderColor(gridStyle.getOutsideBorderColor()),
+	lineThinColor(gridStyle.getLineThinColor()),
+	lineThickColor(gridStyle.getLineThickColor()),
+	gridTextStyle(gridStyle.getGridTextStyle())
 {
 
 	if (!font.loadFromFile("resources/Roboto-Regular.ttf"))

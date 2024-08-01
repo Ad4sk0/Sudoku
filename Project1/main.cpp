@@ -5,6 +5,7 @@
 #include <optional>
 #include "./components/Cell.h"
 #include "./components/GridDimensions.h"
+#include "./components/GridStyle.h"
 #include "./components/Grid.h"
 #include "handlers/ClickHandler.h"
 #include "handlers/TextEnteredHandler.h"
@@ -32,6 +33,16 @@ int main() {
 	const float LINE_TICKNESS_SMALL = 1;
 	const float LINE_TICKNESS_BIG = 5;
 
+	const sf::Color CELL_COLOR = sf::Color::White;
+	const sf::Color CELL_SELECTED_COLOR = sf::Color::Green;
+	const sf::Color GRID_TEXT_COLOR = sf::Color::Black;
+	const sf::Color OUTISDE_BORDER_COLOR = sf::Color::Black;
+	const sf::Color LINE_THIN_COLOR = sf::Color::Black;
+	const sf::Color LINE_THICK_COLOR = sf::Color::Black;
+	const sf::Text::Style GRID_TEXT_STYLE = sf::Text::Bold;
+
+	const sf::Color BACKGROUND_COLOR = sf::Color::White;
+
 	GridDimensions gridDimensions(
 		GRID_SIZE,
 		CELL_SIZE,
@@ -39,7 +50,17 @@ int main() {
 		GRID_MARGIN_Y,
 		LINE_TICKNESS_SMALL,
 		LINE_TICKNESS_BIG
-	);	
+	);
+
+	GridStyle gridStyle(
+		CELL_COLOR,
+		CELL_SELECTED_COLOR,
+		GRID_TEXT_COLOR,
+		OUTISDE_BORDER_COLOR,
+		LINE_THIN_COLOR,
+		LINE_THICK_COLOR,
+		GRID_TEXT_STYLE
+	);
 
 	const std::string WINDOW_TITLE = "Sudoku";
 	const int WINDOW_WIDTH = static_cast<int>(gridDimensions.getGridWidth() + gridDimensions.getMarginX() * 2);
@@ -47,7 +68,7 @@ int main() {
 	
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
 	std::vector<std::vector<sf::RectangleShape>> cellRectangles;
-	Grid grid(window, gridDimensions, generateSudokuGrid(GRID_SIZE));
+	Grid grid(window, gridDimensions, gridStyle, generateSudokuGrid(GRID_SIZE));
 
 	
 	
@@ -81,7 +102,7 @@ int main() {
 			}
 		}
 
-		window.clear();
+		window.clear(BACKGROUND_COLOR);
 		if (newSelection) {
 			grid.handleCellClick(newSelection.value());
 		}

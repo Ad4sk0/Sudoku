@@ -141,21 +141,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="components\GridStyle.cpp" />
     <ClCompile Include="handlers\ClickHandler.cpp" />
     <ClCompile Include="components\Cell.cpp" />
-    <ClCompile Include="example_sudoku.cpp" />
-    <ClCompile Include="example_moves.cpp" />
     <ClCompile Include="components\Grid.cpp" />
     <ClCompile Include="components\GridDimension.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="handlers\TextEnteredHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="components\GridStyle.h" />
     <ClInclude Include="handlers\ClickHandler.h" />
     <ClInclude Include="components\Cell.h" />
     <ClInclude Include="components\Grid.h" />
     <ClInclude Include="components\GridDimensions.h" />
     <ClInclude Include="handlers\TextEnteredHandler.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resources\Roboto-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
