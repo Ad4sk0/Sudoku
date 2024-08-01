@@ -8,7 +8,8 @@ std::optional<std::pair<int, int>> ClickHandler::getSelectedCell(sf::Event::Mous
 		for (int col = 0; col < cellRectangles[row].size(); col++)
 		{
 			sf::RectangleShape rectangle = cellRectangles[row][col];
-			if (isPointInRectangle(mouseEvent, rectangle)) {
+			sf::Vector2f convertedClickCoordinates = window.mapPixelToCoords(sf::Vector2i(mouseEvent.x, mouseEvent.y));
+			if (isPointInRectangle(convertedClickCoordinates, rectangle)) {
 				return std::pair(row, col);
 			}
 		}
@@ -16,12 +17,12 @@ std::optional<std::pair<int, int>> ClickHandler::getSelectedCell(sf::Event::Mous
 	return std::nullopt;
 }
 
-bool ClickHandler::isBetween(int coordinate, float position, float size)
+bool ClickHandler::isBetween(float coordinate, float position, float size)
 {
 	return coordinate >= position && coordinate < position + size;
 }
 
-bool ClickHandler::isPointInRectangle(sf::Event::MouseButtonEvent& mouseEvent, sf::RectangleShape& rectangle)
+bool ClickHandler::isPointInRectangle(sf::Vector2f& clickCoordinates, sf::RectangleShape& rectangle)
 {
-	return isBetween(mouseEvent.x, rectangle.getPosition().x, rectangle.getSize().x) && isBetween(mouseEvent.y, rectangle.getPosition().y, rectangle.getSize().y);
+	return isBetween(clickCoordinates.x, rectangle.getPosition().x, rectangle.getSize().x) && isBetween(clickCoordinates.y, rectangle.getPosition().y, rectangle.getSize().y);
 }

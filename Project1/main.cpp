@@ -67,10 +67,11 @@ int main() {
 	const int WINDOW_HEIGHT = static_cast<int>(gridDimensions.getGridHeight() + gridDimensions.getMarginY() * 2);
 	
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+
+	ClickHandler clickHandler(window);
+
 	std::vector<std::vector<sf::RectangleShape>> cellRectangles;
 	Grid grid(window, gridDimensions, gridStyle, generateSudokuGrid(GRID_SIZE));
-
-	
 	
 	std::optional<std::pair<int, int>> newSelection;
 	std::optional<int> newValueEntry;
@@ -97,7 +98,7 @@ int main() {
 			case sf::Event::MouseButtonReleased:
 				if (evnt.mouseButton.button == sf::Mouse::Left)
 				{
-					newSelection = ClickHandler::getSelectedCell(evnt.mouseButton, cellRectangles);
+					newSelection = clickHandler.getSelectedCell(evnt.mouseButton, cellRectangles);
 				}
 			}
 		}
