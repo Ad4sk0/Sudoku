@@ -24,7 +24,7 @@ void Grid::draw_grid_lines()
 	}
 }
 
-std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells(std::vector<std::vector<Cell>>& gridCells)
+std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells()
 {
 	std::vector<std::vector<sf::RectangleShape>> result(gridSize, std::vector<sf::RectangleShape>(gridSize));
 
@@ -79,10 +79,10 @@ void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value)
 	window.draw(text);
 }
 
-std::vector<std::vector<sf::RectangleShape>> Grid::draw(std::vector<std::vector<Cell>>& gridCells)
+std::vector<std::vector<sf::RectangleShape>> Grid::draw()
 {
 	draw_grid_lines();
-	return draw_grid_cells(gridCells);
+	return draw_grid_cells();
 }
 
 void Grid::handleCellClick(std::pair<int, int> cell)
@@ -95,8 +95,17 @@ void Grid::handleCellClick(std::pair<int, int> cell)
 	}
 }
 
-Grid::Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions)
+void Grid::handleNewValueEntry(int value)
+{
+	if (currentlySelectedCell) {
+		gridCells[currentlySelectedCell->first][currentlySelectedCell->second].value = value;
+		currentlySelectedCell = std::nullopt;
+	}
+}
+
+Grid::Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions, std::vector<std::vector<Cell>> initialGridCels)
 	: window(window),
+	gridCells(initialGridCels),
 	gridSize(gridDimensions.getGridSize()),
 	smallGridSize(gridSize / 3),
 	cellSize(gridDimensions.getCellSize()),

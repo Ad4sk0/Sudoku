@@ -7,6 +7,7 @@
 #include "./components/GridDimensions.h"
 #include "./components/Grid.h"
 #include "handlers/ClickHandler.h"
+#include "handlers/TextEnteredHandler.h"
 
 
 std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize) {
@@ -45,18 +46,19 @@ int main() {
 	const int WINDOW_HEIGHT = static_cast<int>(gridDimensions.getGridHeight() + gridDimensions.getMarginY() * 2);
 	
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-	std::vector<std::vector<Cell>> gridCells = generateSudokuGrid(GRID_SIZE);
 	std::vector<std::vector<sf::RectangleShape>> cellRectangles;
-	Grid grid(window, gridDimensions);
+	Grid grid(window, gridDimensions, generateSudokuGrid(GRID_SIZE));
 
 	
 	
 	std::optional<std::pair<int, int>> newSelection;
+	std::optional<int> newValueEntry;
 
 	window.setFramerateLimit(60);
 	while (window.isOpen())
 	{
 		newSelection = std::nullopt;
+		newValueEntry = std::nullopt;
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
 		{
@@ -69,7 +71,7 @@ int main() {
 				printf("Width: %i Height: %i\n", evnt.size.width, evnt.size.height);
 				break;
 			case sf::Event::TextEntered:
-				printf("%c\n", evnt.text.unicode);
+				newValueEntry = TextEnteredHandler::getEnteredValue(evnt.text);
 				break;
 			case sf::Event::MouseButtonReleased:
 				if (evnt.mouseButton.button == sf::Mouse::Left)
@@ -83,8 +85,11 @@ int main() {
 		if (newSelection) {
 			grid.handleCellClick(newSelection.value());
 		}
+		if (newValueEntry) {
+			grid.handleNewValueEntry(newValueEntry.value());
+		}
 		
-		cellRectangles = grid.draw(gridCells);
+		cellRectangles = grid.draw();
 		window.display();
 
 	}

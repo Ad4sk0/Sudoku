@@ -39,6 +39,9 @@
     <ClCompile Include="handlers\ClickHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="handlers\TextEnteredHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Grid.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="handlers\ClickHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="handlers\TextEnteredHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

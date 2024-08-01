@@ -148,12 +148,14 @@
     <ClCompile Include="components\Grid.cpp" />
     <ClCompile Include="components\GridDimension.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="handlers\TextEnteredHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="handlers\ClickHandler.h" />
     <ClInclude Include="components\Cell.h" />
     <ClInclude Include="components\Grid.h" />
     <ClInclude Include="components\GridDimensions.h" />
+    <ClInclude Include="handlers\TextEnteredHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
