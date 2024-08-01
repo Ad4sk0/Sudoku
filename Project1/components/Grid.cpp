@@ -46,6 +46,8 @@ std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells(std::vector<s
 			window.draw(rectangle);
 			result[row][col] = rectangle;
 
+			drawValueIfDefined(rectangle, gridCells[row][col].value);
+
 			float lineThickness = lineThicknessSmall;
 			if ((col + 1) % smallGridSize == 0) {
 				lineThickness = lineThicknessBig;
@@ -60,6 +62,21 @@ std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells(std::vector<s
 		y += cellSize + lineThickness;
 	}
 	return result;
+}
+
+void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value)
+{
+	if (value < 0) {
+		return;
+	}
+	sf::Text text;
+	text.setFont(font);
+	text.setString(std::to_string(value));
+	text.setCharacterSize(static_cast<int>(cellSize / 2.0f));
+	text.setFillColor(sf::Color::Black);
+	text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width / 2.0f, text.getLocalBounds().top + text.getLocalBounds().height / 2.0f);
+	text.setPosition(rectangle.getPosition().x + rectangle.getSize().x / 2.0f, rectangle.getPosition().y + rectangle.getSize().y / 2.0f);
+	window.draw(text);
 }
 
 std::vector<std::vector<sf::RectangleShape>> Grid::draw(std::vector<std::vector<Cell>>& gridCells)
@@ -89,4 +106,12 @@ Grid::Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions)
 	lineThicknessBig(gridDimensions.getLineThicknessBig()),
 	gridHeight(gridDimensions.getGridHeight()),
 	gridWidth(gridDimensions.getGridWidth())
-{}
+{
+
+	if (!font.loadFromFile("resources/Roboto-Regular.ttf"))
+	{
+		printf("Unable to load font\n");
+		throw std::runtime_error("Unable to load font");
+	}
+
+}

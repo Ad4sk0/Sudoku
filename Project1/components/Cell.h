@@ -3,10 +3,8 @@ class Cell
 {
 public:
 	int value;
-	int x;
-	int y;
-	bool isSelected = false;
 
-	Cell() : value(0) {}
+	Cell() : value(-1) {}
+	Cell(int value) : value(value) {}
 };
 

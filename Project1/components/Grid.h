@@ -9,6 +9,7 @@ class Grid
 {
 private:
 	sf::RenderWindow& window;
+	sf::Font font;
 	int gridSize;
 	int smallGridSize;
 	float cellSize;
@@ -23,6 +24,8 @@ private:
 
 	void draw_grid_lines();
 	std::vector<std::vector<sf::RectangleShape>> draw_grid_cells(std::vector<std::vector<Cell>>& grid);
+
+	void drawValueIfDefined(sf::RectangleShape& rectangle, int value);
 
 public:
 	Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions);
