@@ -27,7 +27,7 @@ std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize) {
 int main() {
 
 	const int GRID_SIZE = 9;
-	const float CELL_SIZE = 100;
+	const float CELL_SIZE = 50;
 	const float GRID_MARGIN_X = 200;
 	const float GRID_MARGIN_Y = 100;
 	const float LINE_TICKNESS_SMALL = 1;
@@ -65,7 +65,7 @@ int main() {
 	const std::string WINDOW_TITLE = "Sudoku";
 	const int WINDOW_WIDTH = static_cast<int>(gridDimensions.getGridWidth() + gridDimensions.getMarginX() * 2);
 	const int WINDOW_HEIGHT = static_cast<int>(gridDimensions.getGridHeight() + gridDimensions.getMarginY() * 2);
-	
+
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
 
 	ClickHandler clickHandler(window);
