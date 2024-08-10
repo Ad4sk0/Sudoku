@@ -15,8 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sudoku.cpp">
+    <ClCompile Include="generator\SudokuGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="validator\SudokuValidator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solver\SudokuSolver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="generator\SudokuGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="validator\SudokuValidator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="solver\SudokuSolver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
