@@ -15,6 +15,11 @@ sf::Color GridStyle::getGridTextColor() const
     return gridTextColor;
 }
 
+sf::Color GridStyle::getGridEditableTextColor() const
+{
+    return gridEditableTextColor;
+}
+
 sf::Color GridStyle::getOutsideBorderColor() const
 {
     return outsideBorderColor;
@@ -33,4 +38,9 @@ sf::Color GridStyle::getLineThickColor() const
 sf::Text::Style GridStyle::getGridTextStyle() const
 {
     return gridTextStyle;
+}
+
+sf::Text::Style GridStyle::getGridEditableTextStyle() const
+{
+    return gridEditableTextStyle;
 }

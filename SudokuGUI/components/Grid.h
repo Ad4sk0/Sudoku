@@ -25,17 +25,19 @@ private:
 	const sf::Color cellColor;
 	const sf::Color cellSelectedColor;
 	const sf::Color gridTextColor;
+	const sf::Color gridEditableTextColor;
 	const sf::Color outsideBorderColor;
 	const sf::Color lineThinColor;
 	const sf::Color lineThickColor;
 	const sf::Text::Style gridTextStyle;
+	const sf::Text::Style gridEditableTextStyle;
 
 	std::optional<std::pair<int, int>> currentlySelectedCell;
 
 	void draw_grid_lines();
 	std::vector<std::vector<sf::RectangleShape>> draw_grid_cells();
 
-	void drawValueIfDefined(sf::RectangleShape& rectangle, int value);
+	void drawValueIfDefined(sf::RectangleShape& rectangle, int value, bool isConstant);
 
 public:
 	Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions, const GridStyle& gridStyle, std::vector<std::vector<Cell>> initialGridCels);

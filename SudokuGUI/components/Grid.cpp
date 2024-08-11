@@ -58,7 +58,7 @@ std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells()
 			window.draw(rectangle);
 			result[row][col] = rectangle;
 
-			drawValueIfDefined(rectangle, gridCells[row][col].value);
+			drawValueIfDefined(rectangle, gridCells[row][col].value, gridCells[row][col].isConstant);
 
 			float lineThickness = lineThicknessSmall;
 			if ((col + 1) % smallGridSize == 0) {
@@ -76,7 +76,7 @@ std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells()
 	return result;
 }
 
-void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value)
+void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value, bool isConstant)
 {
 	if (value < 1) {
 		return;
@@ -85,8 +85,16 @@ void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value)
 	text.setFont(font);
 	text.setString(std::to_string(value));
 	text.setCharacterSize(static_cast<int>(cellSize / 2.0f));
-	text.setFillColor(gridTextColor);
-	text.setStyle(sf::Text::Bold);
+	if (isConstant)
+	{
+		text.setFillColor(gridTextColor);
+		text.setStyle(gridTextStyle);
+	}
+	else
+	{
+		text.setFillColor(gridEditableTextColor);
+		text.setStyle(gridEditableTextStyle);
+	}
 	text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width / 2.0f, text.getLocalBounds().top + text.getLocalBounds().height / 2.0f);
 	text.setPosition(rectangle.getPosition().x + rectangle.getSize().x / 2.0f, rectangle.getPosition().y + rectangle.getSize().y / 2.0f);
 	window.draw(text);
@@ -100,6 +108,10 @@ std::vector<std::vector<sf::RectangleShape>> Grid::draw()
 
 void Grid::handleCellClick(std::pair<int, int> cell)
 {
+	if (gridCells[cell.first][cell.second].isConstant)
+	{
+		return;
+	}
 	if (currentlySelectedCell && currentlySelectedCell->first == cell.first && currentlySelectedCell->second == cell.second) {
 		currentlySelectedCell = std::nullopt;
 	}
@@ -139,10 +151,12 @@ Grid::Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions, const
 	cellColor(gridStyle.getCellColor()),
 	cellSelectedColor(gridStyle.getCellSelectedColor()),
 	gridTextColor(gridStyle.getGridTextColor()),
+	gridEditableTextColor(gridStyle.getGridEditableTextColor()),
 	outsideBorderColor(gridStyle.getOutsideBorderColor()),
 	lineThinColor(gridStyle.getLineThinColor()),
 	lineThickColor(gridStyle.getLineThickColor()),
-	gridTextStyle(gridStyle.getGridTextStyle())
+	gridTextStyle(gridStyle.getGridTextStyle()),
+	gridEditableTextStyle(gridStyle.getGridEditableTextStyle())
 {
 
 	if (!font.loadFromFile("resources/Roboto-Regular.ttf"))

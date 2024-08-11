@@ -44,10 +44,12 @@ int main() {
 	const sf::Color CELL_COLOR = sf::Color::White;
 	const sf::Color CELL_SELECTED_COLOR = sf::Color::Green;
 	const sf::Color GRID_TEXT_COLOR = sf::Color::Black;
+	const sf::Color GRID_EDITABLE_TEXT_COLOR = sf::Color::Red;
 	const sf::Color OUTISDE_BORDER_COLOR = sf::Color::Black;
 	const sf::Color LINE_THIN_COLOR = sf::Color::Black;
 	const sf::Color LINE_THICK_COLOR = sf::Color::Black;
 	const sf::Text::Style GRID_TEXT_STYLE = sf::Text::Bold;
+	const sf::Text::Style GRID_EDITABLE_TEXT_STYLE = sf::Text::Bold;
 
 	const sf::Color BACKGROUND_COLOR = sf::Color::White;
 
@@ -64,10 +66,12 @@ int main() {
 		CELL_COLOR,
 		CELL_SELECTED_COLOR,
 		GRID_TEXT_COLOR,
+		GRID_EDITABLE_TEXT_COLOR,
 		OUTISDE_BORDER_COLOR,
 		LINE_THIN_COLOR,
 		LINE_THICK_COLOR,
-		GRID_TEXT_STYLE
+		GRID_TEXT_STYLE,
+		GRID_EDITABLE_TEXT_STYLE
 	);
 
 	const std::string WINDOW_TITLE = "Sudoku";
