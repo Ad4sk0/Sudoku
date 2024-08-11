@@ -78,7 +78,7 @@ std::vector<std::vector<sf::RectangleShape>> Grid::draw_grid_cells()
 
 void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value)
 {
-	if (value < 0) {
+	if (value < 1) {
 		return;
 	}
 	sf::Text text;

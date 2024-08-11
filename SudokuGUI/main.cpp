@@ -9,24 +9,32 @@
 #include "./components/Grid.h"
 #include "handlers/ClickHandler.h"
 #include "handlers/TextEnteredHandler.h"
+#include "../Sudoku/generator/SudokuGenerator.h"
+#include "../Sudoku/validator/SudokuValidator.h"
 
 
-std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize) {
-	std::vector<std::vector<Cell>> result(gridSize, std::vector<Cell>(gridSize));
-	/*for (size_t row = 0; row < gridSize; row++)
+std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize, const int initialFilledValuesNumber) {
+	SudokuGenerator sudokuGenerator;
+	vector<vector<int>> grid = sudokuGenerator.generate(initialFilledValuesNumber);
+
+	std::vector<std::vector<Cell>> result(gridSize, std::vector<Cell>());
+	for (size_t row = 0; row < gridSize; row++)
 	{
 		for (size_t col = 0; col < gridSize; col++)
 		{
+			int value = grid[row][col];
+			Cell cell = Cell(value, value > 0);
+			result[row].emplace_back(value, value > 0);
 		}
-	}*/
+	}
 	return result;
 }
-
-
 
 int main() {
 
 	const int GRID_SIZE = 9;
+	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 50;
+	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 60;
 	const float CELL_SIZE = 50;
 	const float GRID_MARGIN_X = 200;
 	const float GRID_MARGIN_Y = 100;
@@ -71,7 +79,12 @@ int main() {
 	ClickHandler clickHandler(window);
 
 	std::vector<std::vector<sf::RectangleShape>> cellRectangles;
-	Grid grid(window, gridDimensions, gridStyle, generateSudokuGrid(GRID_SIZE));
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(INITIAL_FILLED_VALUES_NUMBER_MIN, INITIAL_FILLED_VALUES_NUMBER_MAX);
+	int initialFilledValuesNumber = dis(gen);
+	Grid grid(window, gridDimensions, gridStyle, generateSudokuGrid(GRID_SIZE, initialFilledValuesNumber));
 	
 	std::optional<std::pair<int, int>> newSelection;
 	std::optional<int> newValueEntry;

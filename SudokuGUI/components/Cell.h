@@ -3,8 +3,8 @@ class Cell
 {
 public:
 	int value;
+	const bool isConstant;
 
-	Cell() : value(-1) {}
-	Cell(int value) : value(value) {}
+	Cell(int value, bool isConstant) : value(value), isConstant(isConstant) {}
 };
 
