@@ -41,7 +41,7 @@ private:
 
 	void drawValueIfDefined(sf::RectangleShape& rectangle, int value, bool isConstant);
 
-	std::optional<std::pair<int, int>> findEmptyCell(DirectionEnum direction);
+	std::optional<std::pair<int, int>> findEmptyCell(DirectionEnum direction, bool jump);
 	void selectCell(std::pair<int, int>& cell);
 
 public:

@@ -100,7 +100,7 @@ void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value, bool isC
 	window.draw(text);
 }
 
-std::optional<std::pair<int, int>> Grid::findEmptyCell(DirectionEnum direction) {
+std::optional<std::pair<int, int>> Grid::findEmptyCell(DirectionEnum direction, bool jump) {
 	int rowChange = 0;
 	int colChange = 0;
 
@@ -135,11 +135,28 @@ std::optional<std::pair<int, int>> Grid::findEmptyCell(DirectionEnum direction) 
 		row = row + rowChange;
 		col = col + colChange;
 
+		if (jump) {
+			if (col < 0 || col >= gridSize)
+			{
+				row = row + colChange;
+				col = colChange > 0 ? 0 : gridSize - 1;
+			}
+		}
+
 		if (row < 0 || row >= gridSize || col < 0 || col >= gridSize)
 		{
 			break;
 		}
-		return std::pair<int, int>(row, col);
+
+		if (jump) {
+			if (gridCells[row][col].value < 1)
+			{
+				return std::pair<int, int>(row, col);
+			}
+		}
+		else {
+			return std::pair<int, int>(row, col);
+		}
 	}
 	return std::optional<std::pair<int, int>>();
 }
@@ -189,19 +206,25 @@ void Grid::handleNewKeyEntry(sf::Event::KeyEvent keyEvent)
 	switch (keyEvent.code)
 	{
 	case sf::Keyboard::Up:
-		nextCell = findEmptyCell(UP);
+		nextCell = findEmptyCell(UP, false);
 		break;
 	case sf::Keyboard::Left:
-		nextCell = findEmptyCell(LEFT);
+		nextCell = findEmptyCell(LEFT, false);
 		break;
 	case sf::Keyboard::Right:
-		nextCell = findEmptyCell(RIGHT);
+		nextCell = findEmptyCell(RIGHT, false);
 		break;
 	case sf::Keyboard::Down:
-		nextCell = findEmptyCell(DOWN);
+		nextCell = findEmptyCell(DOWN, false);
 		break;
 	case sf::Keyboard::Tab:
-		nextCell = findEmptyCell(RIGHT);
+		if (keyEvent.shift) {
+			nextCell = findEmptyCell(LEFT, true);
+		}
+		else {
+			nextCell = findEmptyCell(RIGHT, true);
+		}
+		
 		break;
 	default:
 		break;
