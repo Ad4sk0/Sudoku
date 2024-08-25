@@ -249,12 +249,6 @@ std::vector<std::vector<int>> Grid::getGridValues()
 	return valuesGrid;
 }
 
-void Grid::reset(std::vector<std::vector<Cell>> newGridCells)
-{
-	gridCells = std::vector(newGridCells);
-	currentlySelectedCell = std::nullopt;
-}
-
 int Grid::getEmptyCellsNumber()
 {
 	auto gridValues = getGridValues();

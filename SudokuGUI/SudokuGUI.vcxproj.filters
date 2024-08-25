@@ -48,6 +48,12 @@
     <ClCompile Include="handlers\KeyPressedHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Grid.h">
@@ -77,10 +83,13 @@
     <ClInclude Include="handlers\KeyPressedHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
+    <ClInclude Include="components\DirectionEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="components\DirectionEnum.h">
+    <ClInclude Include="GameController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

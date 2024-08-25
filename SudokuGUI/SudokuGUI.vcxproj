@@ -144,6 +144,8 @@
   <ItemGroup>
     <ClCompile Include="components\GridStyle.cpp" />
     <ClCompile Include="components\modal_window\DialogBox.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="handlers\ClickHandler.cpp" />
     <ClCompile Include="components\Cell.cpp" />
     <ClCompile Include="components\Grid.cpp" />
@@ -157,6 +159,8 @@
     <ClInclude Include="components\GridStyle.h" />
     <ClInclude Include="components\modal_window\DialogBox.h" />
     <ClInclude Include="components\DirectionEnum.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="handlers\ClickHandler.h" />
     <ClInclude Include="components\Cell.h" />
     <ClInclude Include="components\Grid.h" />
@@ -164,7 +168,6 @@
     <ClInclude Include="handlers\TextEnteredHandler.h" />
     <ClInclude Include="components\modal_window\ModalWindow.h" />
     <ClInclude Include="handlers\KeyPressedHandler.h" />
-    <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="resources\Roboto-Regular.ttf" />

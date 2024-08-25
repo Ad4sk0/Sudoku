@@ -1,5 +1,6 @@
 #pragma once
 #include "ModalWindow.h"
+#include <functional>
 
 class DialogBox :
 	public ModalWindow
@@ -8,8 +9,8 @@ class DialogBox :
 private:
 	sf::RectangleShape buttonLeft;
 	sf::RectangleShape buttonRight;
-	void (*leftButtonAction)();
-	void (*rightButtonAction)();
+	std::function<void()> leftButtonAction;
+	std::function<void()> rightButtonAction;
 
 	void handleButtonLeftClick();
 
@@ -17,7 +18,7 @@ private:
 
 public:
 
-	DialogBox(sf::RenderWindow& window, const sf::Vector2f& size, void (*leftButtonAction)(), void (*rightButtonAction)())
+	DialogBox(sf::RenderWindow& window, const sf::Vector2f& size, std::function<void()> leftButtonAction, std::function<void()> rightButtonAction)
 		: ModalWindow(window, size), leftButtonAction(leftButtonAction), rightButtonAction(rightButtonAction) {};
 
 	void handleEvent(sf::Event evnt) override;

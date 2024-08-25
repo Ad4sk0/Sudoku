@@ -2,6 +2,10 @@
 
 std::optional<std::pair<int, int>> ClickHandler::getSelectedCell(sf::Event::MouseButtonEvent& mouseEvent, std::vector<std::vector<sf::RectangleShape>>& cellRectangles)
 {
+	if (mouseEvent.button != sf::Mouse::Left)
+	{
+		return std::nullopt;
+	}
 
 	for (int row = 0; row < cellRectangles.size(); row++)
 	{
