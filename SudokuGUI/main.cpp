@@ -11,7 +11,22 @@
 #include "handlers/TextEnteredHandler.h"
 #include "../Sudoku/generator/SudokuGenerator.h"
 #include "../Sudoku/validator/SudokuValidator.h"
+#include "./components/modal_window/DialogBox.h"
 
+
+bool endGame = false;
+
+static void restartGame()
+{
+	printf("Restarting game!\n");
+	endGame = true;
+}
+
+static void closeGame()
+{
+	printf("Closing game!\n");
+	endGame = true;
+}
 
 std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize, const int initialFilledValuesNumber) {
 	SudokuGenerator sudokuGenerator;
@@ -33,8 +48,8 @@ std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize, const int 
 int main() {
 
 	const int GRID_SIZE = 9;
-	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 50;
-	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 60;
+	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 80;
+	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 80;
 	const float CELL_SIZE = 50;
 	const float GRID_MARGIN_X = 200;
 	const float GRID_MARGIN_Y = 100;
@@ -94,8 +109,17 @@ int main() {
 	std::optional<int> newValueEntry;
 
 	window.setFramerateLimit(60);
+
+	DialogBox* dialogBox = nullptr;
+	bool isFinished = false;
+
 	while (window.isOpen())
 	{
+		if (endGame)
+		{
+			window.close();
+		}
+
 		newSelection = std::nullopt;
 		newValueEntry = std::nullopt;
 		sf::Event evnt;
@@ -118,19 +142,37 @@ int main() {
 					newSelection = clickHandler.getSelectedCell(evnt.mouseButton, cellRectangles);
 				}
 			}
+			if (dialogBox != nullptr) {
+				dialogBox->handleEvent(evnt);
+			}
 		}
 
 		window.clear(BACKGROUND_COLOR);
+
 		if (newSelection) {
 			grid.handleCellClick(newSelection.value());
 		}
 		if (newValueEntry) {
 			grid.handleNewValueEntry(newValueEntry.value());
 		}
-		
-		cellRectangles = grid.draw();
-		window.display();
 
+		cellRectangles = grid.draw();
+
+		if (!isFinished) {
+			bool isValid = SudokuValidator::isGridValid(grid.getGridValues()).isValid;
+			if (isValid)
+			{
+				dialogBox = new DialogBox(window, sf::Vector2f(400, 200), restartGame, closeGame);
+				dialogBox->show();
+				isFinished = true;
+			}
+		}
+
+		if (dialogBox != nullptr) {
+			dialogBox->draw();
+		}
+
+		window.display();
 	}
 	return 0;
 }

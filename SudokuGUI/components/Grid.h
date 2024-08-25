@@ -45,5 +45,6 @@ public:
 	std::vector<std::vector<sf::RectangleShape>> draw();
 	void handleCellClick(std::pair<int, int> cell);
 	void handleNewValueEntry(int value);
+	std::vector<std::vector<int>> getGridValues();
 };
 

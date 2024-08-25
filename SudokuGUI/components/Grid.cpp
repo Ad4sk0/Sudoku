@@ -128,6 +128,20 @@ void Grid::handleNewValueEntry(int value)
 	}
 }
 
+std::vector<std::vector<int>> Grid::getGridValues()
+{
+	std::vector<std::vector<int>> valuesGrid(9, std::vector<int>(9));
+
+	for (size_t row = 0; row < 9; row++)
+	{
+		for (size_t col = 0; col < 9; col++)
+		{
+			valuesGrid[row][col] = gridCells[row][col].value;
+		}
+	}
+	return valuesGrid;
+}
+
 const sf::Color cellColor;
 const sf::Color cellSelectedColor;
 const sf::Color gridTextColor;
