@@ -255,6 +255,16 @@ void Grid::reset(std::vector<std::vector<Cell>> newGridCells)
 	currentlySelectedCell = std::nullopt;
 }
 
+int Grid::getEmptyCellsNumber()
+{
+	auto gridValues = getGridValues();
+	int sum = 0;
+	for (auto& row : gridValues) {
+		sum += count(row.begin(), row.end(), 0);
+	}
+	return sum;
+}
+
 const sf::Color cellColor;
 const sf::Color cellSelectedColor;
 const sf::Color gridTextColor;

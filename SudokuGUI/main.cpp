@@ -33,7 +33,7 @@ static void closeGame()
 std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize, const int initialFilledValuesNumber) {
 	SudokuGenerator sudokuGenerator;
 	vector<vector<int>> grid = sudokuGenerator.generate(initialFilledValuesNumber);
-
+	
 	std::vector<std::vector<Cell>> result(gridSize, std::vector<Cell>());
 	for (size_t row = 0; row < gridSize; row++)
 	{
@@ -50,8 +50,8 @@ std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize, const int 
 int main() {
 
 	const int GRID_SIZE = 9;
-	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 40;
-	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 40;
+	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 45;
+	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 55;
 	const float CELL_SIZE = 50;
 	const float GRID_MARGIN_X = 200;
 	const float GRID_MARGIN_Y = 100;
@@ -106,7 +106,7 @@ int main() {
 	std::uniform_int_distribution<> dis(INITIAL_FILLED_VALUES_NUMBER_MIN, INITIAL_FILLED_VALUES_NUMBER_MAX);
 	int initialFilledValuesNumber = dis(gen);
 	Grid grid(window, gridDimensions, gridStyle, generateSudokuGrid(GRID_SIZE, initialFilledValuesNumber));
-	
+
 	std::optional<std::pair<int, int>> newSelection;
 	std::optional<int> newValueEntry;
 	std::optional<sf::Event::KeyEvent> newKeyPressed;
@@ -179,12 +179,15 @@ int main() {
 		cellRectangles = grid.draw();
 
 		if (!isFinished) {
-			bool isValid = SudokuValidator::isGridValid(grid.getGridValues()).isValid;
-			if (isValid)
+			auto validationResult = SudokuValidator::isGridValid(grid.getGridValues());
+			if (validationResult.isValid)
 			{
 				dialogBox = new DialogBox(window, sf::Vector2f(400, 200), restartGame, closeGame);
 				dialogBox->show();
 				isFinished = true;
+			}
+			else if (newValueEntry && grid.getEmptyCellsNumber() == 0) {
+				printf("The cell: (%i, %i) is not valid\n", validationResult.notValidCell.first, validationResult.notValidCell.second);
 			}
 		}
 

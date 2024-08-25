@@ -53,5 +53,6 @@ public:
 	void handleNewKeyEntry(sf::Event::KeyEvent keyEvent);
 	std::vector<std::vector<int>> getGridValues();
 	void reset(std::vector<std::vector<Cell>> newGridCels);
+	int getEmptyCellsNumber();
 };
 
