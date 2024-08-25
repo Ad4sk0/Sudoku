@@ -15,11 +15,12 @@
 
 
 bool endGame = false;
+bool isRestartGame = false;
 
 static void restartGame()
 {
 	printf("Restarting game!\n");
-	endGame = true;
+	isRestartGame = true;
 }
 
 static void closeGame()
@@ -118,6 +119,14 @@ int main() {
 		if (endGame)
 		{
 			window.close();
+		}
+
+		if (isRestartGame) {
+			delete dialogBox;
+			dialogBox = nullptr;
+			isFinished = false;
+			isRestartGame = false;
+			grid.reset(generateSudokuGrid(GRID_SIZE, initialFilledValuesNumber));
 		}
 
 		newSelection = std::nullopt;

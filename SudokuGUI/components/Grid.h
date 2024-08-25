@@ -46,5 +46,6 @@ public:
 	void handleCellClick(std::pair<int, int> cell);
 	void handleNewValueEntry(int value);
 	std::vector<std::vector<int>> getGridValues();
+	void reset(std::vector<std::vector<Cell>> newGridCels);
 };
 

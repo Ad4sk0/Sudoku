@@ -142,6 +142,12 @@ std::vector<std::vector<int>> Grid::getGridValues()
 	return valuesGrid;
 }
 
+void Grid::reset(std::vector<std::vector<Cell>> newGridCells)
+{
+	gridCells = std::vector(newGridCells);
+	currentlySelectedCell = std::nullopt;
+}
+
 const sf::Color cellColor;
 const sf::Color cellSelectedColor;
 const sf::Color gridTextColor;
