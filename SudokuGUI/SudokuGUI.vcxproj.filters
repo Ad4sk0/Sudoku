@@ -45,6 +45,9 @@
     <ClCompile Include="components\modal_window\DialogBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="handlers\KeyPressedHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Grid.h">
@@ -69,6 +72,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="components\modal_window\DialogBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="handlers\KeyPressedHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="components\DirectionEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

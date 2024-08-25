@@ -4,6 +4,7 @@
 #include "GridStyle.h"
 #include "Cell.h"
 #include <optional>
+#include "DirectionEnum.h"
 
 
 class Grid
@@ -33,11 +34,15 @@ private:
 	const sf::Text::Style gridEditableTextStyle;
 
 	std::optional<std::pair<int, int>> currentlySelectedCell;
+	std::optional<std::pair<int, int>> lastCellSelection;
 
 	void draw_grid_lines();
 	std::vector<std::vector<sf::RectangleShape>> draw_grid_cells();
 
 	void drawValueIfDefined(sf::RectangleShape& rectangle, int value, bool isConstant);
+
+	std::optional<std::pair<int, int>> findEmptyCell(DirectionEnum direction);
+	void selectCell(std::pair<int, int>& cell);
 
 public:
 	Grid(sf::RenderWindow& window, const GridDimensions& gridDimensions, const GridStyle& gridStyle, std::vector<std::vector<Cell>> initialGridCels);
@@ -45,6 +50,7 @@ public:
 	std::vector<std::vector<sf::RectangleShape>> draw();
 	void handleCellClick(std::pair<int, int> cell);
 	void handleNewValueEntry(int value);
+	void handleNewKeyEntry(sf::Event::KeyEvent keyEvent);
 	std::vector<std::vector<int>> getGridValues();
 	void reset(std::vector<std::vector<Cell>> newGridCels);
 };

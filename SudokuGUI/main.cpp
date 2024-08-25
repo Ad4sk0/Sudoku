@@ -12,6 +12,7 @@
 #include "../Sudoku/generator/SudokuGenerator.h"
 #include "../Sudoku/validator/SudokuValidator.h"
 #include "./components/modal_window/DialogBox.h"
+#include "handlers/KeyPressedHandler.h"
 
 
 bool endGame = false;
@@ -49,8 +50,8 @@ std::vector<std::vector<Cell>> generateSudokuGrid(const int gridSize, const int 
 int main() {
 
 	const int GRID_SIZE = 9;
-	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 80;
-	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 80;
+	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 40;
+	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 40;
 	const float CELL_SIZE = 50;
 	const float GRID_MARGIN_X = 200;
 	const float GRID_MARGIN_Y = 100;
@@ -108,6 +109,7 @@ int main() {
 	
 	std::optional<std::pair<int, int>> newSelection;
 	std::optional<int> newValueEntry;
+	std::optional<sf::Event::KeyEvent> newKeyPressed;
 
 	window.setFramerateLimit(60);
 
@@ -131,6 +133,8 @@ int main() {
 
 		newSelection = std::nullopt;
 		newValueEntry = std::nullopt;
+		newKeyPressed = std::nullopt;
+
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
 		{
@@ -150,7 +154,11 @@ int main() {
 				{
 					newSelection = clickHandler.getSelectedCell(evnt.mouseButton, cellRectangles);
 				}
+			case sf::Event::KeyReleased:
+				newKeyPressed = KeyPressedHandler::getPressedKey(evnt.key);
+				break;
 			}
+
 			if (dialogBox != nullptr) {
 				dialogBox->handleEvent(evnt);
 			}
@@ -163,6 +171,9 @@ int main() {
 		}
 		if (newValueEntry) {
 			grid.handleNewValueEntry(newValueEntry.value());
+		}
+		if (newKeyPressed) {
+			grid.handleNewKeyEntry(newKeyPressed.value());
 		}
 
 		cellRectangles = grid.draw();

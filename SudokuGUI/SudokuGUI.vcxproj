@@ -148,6 +148,7 @@
     <ClCompile Include="components\Cell.cpp" />
     <ClCompile Include="components\Grid.cpp" />
     <ClCompile Include="components\GridDimension.cpp" />
+    <ClCompile Include="handlers\KeyPressedHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="handlers\TextEnteredHandler.cpp" />
     <ClCompile Include="components\modal_window\ModalWindow.cpp" />
@@ -155,12 +156,15 @@
   <ItemGroup>
     <ClInclude Include="components\GridStyle.h" />
     <ClInclude Include="components\modal_window\DialogBox.h" />
+    <ClInclude Include="components\DirectionEnum.h" />
     <ClInclude Include="handlers\ClickHandler.h" />
     <ClInclude Include="components\Cell.h" />
     <ClInclude Include="components\Grid.h" />
     <ClInclude Include="components\GridDimensions.h" />
     <ClInclude Include="handlers\TextEnteredHandler.h" />
     <ClInclude Include="components\modal_window\ModalWindow.h" />
+    <ClInclude Include="handlers\KeyPressedHandler.h" />
+    <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="resources\Roboto-Regular.ttf" />

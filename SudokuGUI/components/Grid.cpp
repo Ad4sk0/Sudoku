@@ -100,6 +100,56 @@ void Grid::drawValueIfDefined(sf::RectangleShape& rectangle, int value, bool isC
 	window.draw(text);
 }
 
+std::optional<std::pair<int, int>> Grid::findEmptyCell(DirectionEnum direction) {
+	int rowChange = 0;
+	int colChange = 0;
+
+	switch (direction)
+	{
+	case LEFT:
+		colChange = -1;
+		break;
+	case RIGHT:
+		colChange = 1;
+		break;
+	case UP:
+		rowChange = -1;
+		break;
+	case DOWN:
+		rowChange = 1;;
+		break;
+	default:
+		break;
+	}
+
+	auto start = lastCellSelection;
+	if (!start) {
+		start = std::pair<int, int>(0 - rowChange, 0 - colChange);
+	}
+	int row = start->first;
+	int col = start->second;
+
+
+	while (true)
+	{
+		row = row + rowChange;
+		col = col + colChange;
+
+		if (row < 0 || row >= gridSize || col < 0 || col >= gridSize)
+		{
+			break;
+		}
+		return std::pair<int, int>(row, col);
+	}
+	return std::optional<std::pair<int, int>>();
+}
+
+void Grid::selectCell(std::pair<int, int>& cell)
+{
+	currentlySelectedCell = cell;
+	lastCellSelection = cell;
+}
+
 std::vector<std::vector<sf::RectangleShape>> Grid::draw()
 {
 	draw_grid_lines();
@@ -116,15 +166,49 @@ void Grid::handleCellClick(std::pair<int, int> cell)
 		currentlySelectedCell = std::nullopt;
 	}
 	else {
-		currentlySelectedCell = cell;
+		selectCell(cell);
 	}
 }
 
 void Grid::handleNewValueEntry(int value)
 {
-	if (currentlySelectedCell) {
-		gridCells[currentlySelectedCell->first][currentlySelectedCell->second].value = value;
-		currentlySelectedCell = std::nullopt;
+	if (!currentlySelectedCell) {
+		return;
+	}
+	if (gridCells[currentlySelectedCell->first][currentlySelectedCell->second].isConstant) {
+		return;
+	}
+	gridCells[currentlySelectedCell->first][currentlySelectedCell->second].value = value;
+	currentlySelectedCell = std::nullopt;
+}
+
+void Grid::handleNewKeyEntry(sf::Event::KeyEvent keyEvent)
+{
+	std::optional<std::pair<int, int>> nextCell;
+
+	switch (keyEvent.code)
+	{
+	case sf::Keyboard::Up:
+		nextCell = findEmptyCell(UP);
+		break;
+	case sf::Keyboard::Left:
+		nextCell = findEmptyCell(LEFT);
+		break;
+	case sf::Keyboard::Right:
+		nextCell = findEmptyCell(RIGHT);
+		break;
+	case sf::Keyboard::Down:
+		nextCell = findEmptyCell(DOWN);
+		break;
+	case sf::Keyboard::Tab:
+		nextCell = findEmptyCell(RIGHT);
+		break;
+	default:
+		break;
+	}
+
+	if (nextCell) {
+		selectCell(nextCell.value());
 	}
 }
 
