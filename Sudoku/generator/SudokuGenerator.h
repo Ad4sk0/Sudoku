@@ -17,12 +17,15 @@ struct pair_hash {
 class SudokuGenerator
 {
 private:
-
+	std::mt19937 randomGenerator;
 	SudokuSolver solver;
 
 	pair<int, int> findNextNonEmptyCell(vector<vector<int>> grid, unordered_set<pair<int, int>, pair_hash>& triedCells);
 
 public:
+
+	SudokuGenerator() : randomGenerator(std::random_device{}()) {
+	}
 
 	vector<vector<int>> generate(int numberOfFiledCells);
 };

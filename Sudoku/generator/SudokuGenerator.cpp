@@ -23,7 +23,8 @@ pair<int, int> SudokuGenerator::findNextNonEmptyCell(vector<vector<int>> grid, u
 		throw runtime_error("Unable to find empty cell");
 	}
 
-	int index = rand() % emptyCells.size();
+	std::uniform_int_distribution<> dis(0, emptyCells.size() - 1);
+	int index = dis(randomGenerator);
 	return emptyCells[index];
 }
 
