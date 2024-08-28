@@ -1,12 +1,12 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "./components/Cell.h"
-#include "./components/GridDimensions.h"
-#include "./components/GridStyle.h"
-#include "./components/Grid.h"
-#include "../Sudoku/validator/SudokuValidator.h"
-#include "../Sudoku/generator/SudokuGenerator.h"
+#include "components/Cell.h"
+#include "components/GridDimensions.h"
+#include "components/GridStyle.h"
+#include "components/Grid.h"
+#include "sudoku/validator/SudokuValidator.h"
+#include "sudoku/generator/SudokuGenerator.h"
 #include <random>
 
 class Game
@@ -16,8 +16,8 @@ private:
 	Grid* grid = nullptr;
 
 	const int GRID_SIZE = 9;
-	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 45;
-	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 55;
+	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 75;
+	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 75;
 	const float LINE_TICKNESS_SMALL = 1;
 	const float LINE_TICKNESS_BIG = 5;
 	const sf::Color CELL_COLOR = sf::Color::White;

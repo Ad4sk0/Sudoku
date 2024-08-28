@@ -1,4 +1,4 @@
-#include "SudokuGenerator.h"
+#include "generator/SudokuGenerator.h"
 
 pair<int, int> SudokuGenerator::findNextNonEmptyCell(vector<vector<int>> grid, unordered_set<pair<int, int>, pair_hash>& triedCells)
 {

@@ -1,4 +1,4 @@
-#include "GridDimensions.h"
+#include "components/GridDimensions.h"
 
 
 GridDimensions::GridDimensions(int gridSize, float cellSize, float marginX, float marginY, float lineThicknessSmall, float lineThicknessBig)

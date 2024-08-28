@@ -1,4 +1,4 @@
-#include "SudokuSolver.h"
+#include "solver/SudokuSolver.h"
 
 optional<pair<int, int>> SudokuSolver::findEmptyCell(const vector<vector<int>>& grid) {
 	for (int row = 0; row < grid.size(); row++)

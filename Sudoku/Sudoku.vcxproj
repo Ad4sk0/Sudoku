@@ -19,14 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="generator\SudokuGenerator.cpp" />
-    <ClCompile Include="solver\SudokuSolver.cpp" />
-    <ClCompile Include="validator\SudokuValidator.cpp" />
+    <ClCompile Include="src\generator\SudokuGenerator.cpp" />
+    <ClCompile Include="src\solver\SudokuSolver.cpp" />
+    <ClCompile Include="src\validator\SudokuValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="generator\SudokuGenerator.h" />
-    <ClInclude Include="solver\SudokuSolver.h" />
-    <ClInclude Include="validator\SudokuValidator.h" />
+    <ClInclude Include="include\sudoku\generator\SudokuGenerator.h" />
+    <ClInclude Include="include\sudoku\solver\SudokuSolver.h" />
+    <ClInclude Include="include\sudoku\validator\SudokuValidator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -115,6 +118,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\sudoku;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +134,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\sudoku;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

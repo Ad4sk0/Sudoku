@@ -1,4 +1,4 @@
-#include "Grid.h"
+#include "components/Grid.h"
 
 void Grid::draw_grid_lines()
 {

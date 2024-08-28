@@ -1,4 +1,4 @@
-#include "ClickHandler.h"
+#include "handlers/ClickHandler.h"
 
 std::optional<std::pair<int, int>> ClickHandler::getSelectedCell(sf::Event::MouseButtonEvent& mouseEvent, std::vector<std::vector<sf::RectangleShape>>& cellRectangles)
 {

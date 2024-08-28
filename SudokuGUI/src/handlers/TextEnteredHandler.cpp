@@ -1,4 +1,4 @@
-#include "TextEnteredHandler.h"
+#include "handlers/TextEnteredHandler.h"
 
 std::optional<int> TextEnteredHandler::getEnteredValue(sf::Event::TextEvent textEvent)
 {

@@ -1,4 +1,4 @@
-#include "ModalWindow.h"
+#include "components/modal_window/ModalWindow.h"
 
 void ModalWindow::draw()
 {

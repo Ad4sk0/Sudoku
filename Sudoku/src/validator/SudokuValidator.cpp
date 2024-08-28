@@ -1,4 +1,4 @@
-#include "SudokuValidator.h"
+#include "validator/SudokuValidator.h"
 
 inline bool SudokuValidator::isValidSize(const vector<vector<int>>& grid)
 {

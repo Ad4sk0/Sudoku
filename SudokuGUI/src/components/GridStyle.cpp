@@ -1,4 +1,4 @@
-#include "GridStyle.h"
+#include "components/GridStyle.h"
 
 sf::Color GridStyle::getCellColor() const
 {

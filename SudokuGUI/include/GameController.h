@@ -4,7 +4,7 @@
 #include <optional>
 #include "handlers/ClickHandler.h"
 #include "handlers/TextEnteredHandler.h"
-#include "./components/modal_window/DialogBox.h"
+#include "components/modal_window/DialogBox.h"
 #include "handlers/KeyPressedHandler.h"
 #include "Game.h"
 #include <functional>

@@ -1,4 +1,4 @@
-#include "DialogBox.h"
+#include "components/modal_window/DialogBox.h"
 
 void DialogBox::handleButtonLeftClick()
 {

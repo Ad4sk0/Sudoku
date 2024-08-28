@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{25ee946a-8e52-4581-b1b1-81baecd918b4}</ProjectGuid>
+    <ProjectGuid>{9addfe2c-1e47-484a-a570-1f9976795975}</ProjectGuid>
     <RootNamespace>SudokuGUI</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>SudokuGUI</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -77,13 +76,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -94,15 +90,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Sudoku\include;$(ProjectDir)include;D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -127,50 +120,60 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SFML_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\programy\cpplibs\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;C:\Users\adamw\source\repos\Sudoku\Sudoku\x64\Debug\*.obj;$(SolutionDir)Sudoku\$(Platform)\$(Configuration)\*.obj;Sudoku.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="components\GridStyle.cpp" />
-    <ClCompile Include="components\modal_window\DialogBox.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameController.cpp" />
-    <ClCompile Include="handlers\ClickHandler.cpp" />
-    <ClCompile Include="components\Cell.cpp" />
-    <ClCompile Include="components\Grid.cpp" />
-    <ClCompile Include="components\GridDimension.cpp" />
-    <ClCompile Include="handlers\KeyPressedHandler.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="handlers\TextEnteredHandler.cpp" />
-    <ClCompile Include="components\modal_window\ModalWindow.cpp" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\components\Cell.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\components\DirectionEnum.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\components\Grid.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\components\GridDimensions.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\components\GridStyle.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\components\modal_window\DialogBox.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\components\modal_window\ModalWindow.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\Game.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\GameController.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\handlers\ClickHandler.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\handlers\KeyPressedHandler.h" />
+    <ClInclude Include="..\SudokuGUI-tmp\include\handlers\TextEnteredHandler.h" />
+    <ClInclude Include="include\components\Cell.h" />
+    <ClInclude Include="include\components\DirectionEnum.h" />
+    <ClInclude Include="include\components\Grid.h" />
+    <ClInclude Include="include\components\GridDimensions.h" />
+    <ClInclude Include="include\components\GridStyle.h" />
+    <ClInclude Include="include\components\modal_window\DialogBox.h" />
+    <ClInclude Include="include\components\modal_window\ModalWindow.h" />
+    <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\GameController.h" />
+    <ClInclude Include="include\handlers\ClickHandler.h" />
+    <ClInclude Include="include\handlers\KeyPressedHandler.h" />
+    <ClInclude Include="include\handlers\TextEnteredHandler.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="components\GridStyle.h" />
-    <ClInclude Include="components\modal_window\DialogBox.h" />
-    <ClInclude Include="components\DirectionEnum.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameController.h" />
-    <ClInclude Include="handlers\ClickHandler.h" />
-    <ClInclude Include="components\Cell.h" />
-    <ClInclude Include="components\Grid.h" />
-    <ClInclude Include="components\GridDimensions.h" />
-    <ClInclude Include="handlers\TextEnteredHandler.h" />
-    <ClInclude Include="components\modal_window\ModalWindow.h" />
-    <ClInclude Include="handlers\KeyPressedHandler.h" />
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="resources\Roboto-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\components\Grid.cpp" />
+    <ClCompile Include="src\components\GridDimension.cpp" />
+    <ClCompile Include="src\components\GridStyle.cpp" />
+    <ClCompile Include="src\components\modal_window\DialogBox.cpp" />
+    <ClCompile Include="src\components\modal_window\ModalWindow.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameController.cpp" />
+    <ClCompile Include="src\handlers\ClickHandler.cpp" />
+    <ClCompile Include="src\handlers\KeyPressedHandler.cpp" />
+    <ClCompile Include="src\handlers\TextEnteredHandler.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoku\Sudoku.vcxproj">
