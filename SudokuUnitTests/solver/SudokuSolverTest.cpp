@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Sudoku/solver/SudokuSolver.h"
-#include "../Sudoku/validator/SudokuValidator.h"
+#include "sudoku/solver/SudokuSolver.h"
+#include "sudoku/validator/SudokuValidator.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;

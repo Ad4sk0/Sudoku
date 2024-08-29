@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Sudoku/validator/SudokuValidator.h"
+#include "sudoku/validator/SudokuValidator.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
