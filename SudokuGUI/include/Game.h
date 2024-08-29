@@ -16,8 +16,8 @@ private:
 	Grid* grid = nullptr;
 
 	const int GRID_SIZE = 9;
-	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 75;
-	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 75;
+	const int INITIAL_FILLED_VALUES_NUMBER_MIN = 45;
+	const int INITIAL_FILLED_VALUES_NUMBER_MAX = 55;
 	const float LINE_TICKNESS_SMALL = 1;
 	const float LINE_TICKNESS_BIG = 5;
 	const sf::Color CELL_COLOR = sf::Color::White;
